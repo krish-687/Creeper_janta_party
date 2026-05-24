@@ -427,12 +427,12 @@ const bg = document.getElementById("bgMusic");
 const musicBtn = document.getElementById("musicBtn");
 
 function format(v){
-  return String(v % 100).padStart(2, "0");
+  return String(v % 100).padStart(2,"0");
 }
 
-function animateCount(start, end){
+function animateCount(start,end){
   let current = start;
-  const step = Math.ceil((end - start) / 12);
+  const step = Math.ceil((end-start)/12);
 
   const interval = setInterval(() => {
     current += step;
@@ -443,25 +443,26 @@ function animateCount(start, end){
     }
 
     el.innerText = format(current);
-  }, 25);
+  },25);
 }
 
 el.innerText = format(votes);
 
-window.addEventListener("load", () => {
-  bg.play().then(() => {
-    bg.muted = false;
-  }).catch(() => {});
-});
-
+/* MUSIC BUTTON FIX */
 function toggleMusic(){
 
   if(bg.paused){
+
+    bg.muted = false;
     bg.play();
-    musicBtn.innerText = "🎵 Music ON";
-  } else {
-    bg.pause();
+
     musicBtn.innerText = "🔇 Music OFF";
+
+  } else {
+
+    bg.pause();
+
+    musicBtn.innerText = "🎵 Music ON";
   }
 }
 
@@ -473,18 +474,18 @@ function addVote(){
   const oldVotes = votes;
   votes += 1;
 
-  animateCount(oldVotes, votes);
+  animateCount(oldVotes,votes);
 
-  localStorage.setItem("cjpVotes", votes);
+  localStorage.setItem("cjpVotes",votes);
 }
 
 function closePopup(){
-  document.getElementById("creeperPopup").style.display = "none";
+  document.getElementById("creeperPopup").style.display="none";
 }
 
 setTimeout(() => {
-  document.getElementById("creeperPopup").style.display = "block";
-}, 4000);
+  document.getElementById("creeperPopup").style.display="block";
+},4000);
 </script>
 
 
