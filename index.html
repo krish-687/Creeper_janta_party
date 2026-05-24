@@ -419,6 +419,7 @@ let votes = Number(localStorage.getItem("cjpVotes")) || 0;
 
 const el = document.getElementById("voteCount");
 const sound = document.getElementById("creeperSound");
+const bg = document.getElementById("bgMusic");
 
 function format(v){
   return String(v % 100).padStart(2, "0");
@@ -443,6 +444,10 @@ function animateCount(start, end){
 el.innerText = format(votes);
 
 function addVote(){
+
+  if(bg.paused){
+    bg.play();
+  }
 
   sound.currentTime = 0;
   sound.play();
