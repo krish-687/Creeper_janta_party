@@ -1,241 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Creeper Janta Party</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
-body{
-font-family:Arial,sans-serif;
-background:
-linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.75)),
-url("minecraft-bg.png");
-background-size:cover;
-background-position:center;
-color:white;
-overflow-x:hidden;
-transition:0.1s;
-}
-
-.navbar{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:18px 30px;
-background:linear-gradient(90deg,#0b7f00,#19b400);
-flex-wrap:wrap;
-}
-
-.brand{
-display:flex;
-align-items:center;
-gap:15px;
-}
-
-.brand img{
-width:45px;
-border-radius:8px;
-}
-
-.brand h1{
-font-family:'Press Start 2P',cursive;
-font-size:18px;
-}
-
-nav a{
-color:white;
-text-decoration:none;
-margin-left:20px;
-font-weight:bold;
-}
-
-.hero{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:70px 40px;
-flex-wrap:wrap;
-}
-
-.hero-left h2{
-font-family:'Press Start 2P',cursive;
-font-size:50px;
-color:#00ff55;
-}
-
-.hero-left p{
-margin-top:20px;
-font-size:22px;
-}
-
-.btn{
-display:inline-block;
-margin-top:25px;
-margin-right:12px;
-padding:15px 24px;
-border-radius:12px;
-font-weight:bold;
-background:#00ff55;
-color:black;
-border:none;
-cursor:pointer;
-transition:0.2s;
-}
-
-.btn:hover{
-transform:scale(1.05);
-}
-
-.insta{
-background:linear-gradient(45deg,#ff0077,#ff7a00);
-color:white;
-}
-
-.vote-section{
-margin:50px auto;
-max-width:1100px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-background:rgba(0,0,0,.75);
-padding:30px;
-border-radius:20px;
-border:2px solid #00ff55;
-flex-wrap:wrap;
-}
-
-.vote-text{
-text-align:center;
-flex:1;
-}
-
-.vote-number{
-font-size:50px;
-font-family:'Press Start 2P',cursive;
-color:#00ff55;
-margin-top:20px;
-}
-
-.leaderboard{
-margin:40px auto;
-max-width:600px;
-background:rgba(0,0,0,.75);
-padding:20px;
-border-radius:15px;
-border:2px solid #00ff55;
-text-align:center;
-}
-
-.bar{
-height:20px;
-background:#333;
-margin:10px 0;
-border-radius:10px;
-overflow:hidden;
-}
-
-.fill{
-height:100%;
-background:#00ff55;
-width:70%;
-transition:0.3s;
-}
-
-.gta .fill{
-background:red;
-width:30%;
-}
-
-footer{
-margin-top:40px;
-background:#111;
-padding:30px;
-text-align:center;
-border-top:2px solid #00ff55;
-}
-</style>
-</head>
-
-<body>
-
-<header class="navbar">
-<div class="brand">
-<img src="logo.jpg">
-<h1>CREEPER JANTA PARTY</h1>
-</div>
-
-<nav>
-<a href="#">HOME</a>
-<a href="#">ABOUT</a>
-<a href="#">PROMISES</a>
-<a href="#">GALLERY</a>
-<a href="#">CONTACT</a>
-</nav>
-</header>
-
-<section class="hero">
-
-<div class="hero-left">
-
-<h2>CREEPER JANTA PARTY</h2>
-
-<p>Vote do Creeper Janta Party ko!</p>
-
-<a class="btn" href="https://forms.gle/RaB2mif19oH4SvZv6" target="_blank">
-🟩 JOIN CJP
-</a>
-
-<a class="btn insta" href="https://www.instagram.com/creeper_janta_party/" target="_blank">
-📸 FOLLOW
-</a>
-
-</div>
-
-</section>
-
-<section class="vote-section">
-
-<div class="vote-text">
-
-<h2>VOTE FOR CJP</h2>
-
-<div class="vote-number" id="voteCount">00</div>
-
-<button class="btn" onclick="addVote()">🗳 Vote Now</button>
-
-</div>
-
-</section>
-
-<!-- LEADERBOARD -->
-<section class="leaderboard">
-
-<h2>LIVE LEADERBOARD</h2>
-
-<p>Creeper Janta Party</p>
-<div class="bar"><div class="fill"></div></div>
-
-<p>GTA Janta Party</p>
-<div class="bar gta"><div class="fill"></div></div>
-
-</section>
-
-<footer>
-
-<h3>CREEPER JANTA PARTY</h3>
-<p>Created by Krish ⚡</p>
-
-</footer>
-
 <script>
 let votes = Number(localStorage.getItem("cjpVotes")) || 0;
 const el = document.getElementById("voteCount");
@@ -246,7 +8,7 @@ function format(v){
 
 el.innerText = format(votes);
 
-/* 🔊 SOUND FIXED */
+/* 🔊 SOUND (fixed autoplay issue) */
 function playSound(){
   const audio = new Audio("https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg");
   audio.volume = 0.7;
@@ -268,6 +30,7 @@ function confetti(){
 
     let fall = setInterval(()=>{
       c.style.top = (parseFloat(c.style.top)+4)+"px";
+
       if(parseFloat(c.style.top)>window.innerHeight){
         c.remove();
         clearInterval(fall);
@@ -278,15 +41,18 @@ function confetti(){
 
 /* 📳 STRONG SHAKE */
 function shake(){
-  let i=0;
-  const interval=setInterval(()=>{
-    document.body.style.transform = `translate(${(i%2===0?8:-8)}px,0)`;
-    i++;
-    if(i>6){
-      clearInterval(interval);
-      document.body.style.transform="translate(0,0)";
-    }
+  document.body.style.transition="0.1s";
+  let x = 10;
+
+  let i = setInterval(()=>{
+    document.body.style.transform=`translate(${x}px,0)`;
+    x = -x;
   },50);
+
+  setTimeout(()=>{
+    clearInterval(i);
+    document.body.style.transform="translate(0,0)";
+  },300);
 }
 
 /* 📈 ANIMATION */
@@ -307,11 +73,8 @@ function addVote(){
 
   animate(old,votes);
 
-  playSound();
-  confetti();
-  shake();
+  playSound();   // 🔊 FIXED
+  confetti();    // 🎆 FIXED
+  shake();       // 📳 FIXED
 }
 </script>
-
-</body>
-</html>
