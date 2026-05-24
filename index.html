@@ -9,222 +9,344 @@
 
 <style>
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
 body{
-    font-family:Arial,sans-serif;
-    background:
-        linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,.55)),
-        url("minecraft-bg.png");
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
-    background-attachment:fixed;
-    color:white;
-    text-align:center;
+font-family:Arial,sans-serif;
+background:
+linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.75)),
+url("minecraft-bg.png");
+background-size:cover;
+background-position:center;
+color:white;
 }
 
-header{
-    background:linear-gradient(90deg,#0f8f00,#20c400,#0f8f00);
-    padding:25px;
-    box-shadow:0 0 30px #00ff55;
-    border-bottom:4px solid #00ff55;
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 30px;
+background:linear-gradient(90deg,#0b7f00,#19b400);
+flex-wrap:wrap;
 }
 
-h1{
-    font-family:'Press Start 2P',cursive;
-    font-size:2rem;
-    text-shadow:0 0 12px #00ff55;
+.brand{
+display:flex;
+align-items:center;
+gap:15px;
 }
 
-header p{
-    margin-top:12px;
-    font-size:18px;
+.brand img{
+width:45px;
+border-radius:8px;
+}
+
+.brand h1{
+font-family:'Press Start 2P',cursive;
+font-size:18px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+font-weight:bold;
 }
 
 .hero{
-    padding:40px 20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:70px 40px;
+flex-wrap:wrap;
 }
 
-.logo{
-    width:230px;
-    border-radius:18px;
-    box-shadow:0 0 25px #00ff55;
-    transition:.3s;
+.hero-left{
+max-width:500px;
 }
 
-.logo:hover{
-    transform:scale(1.05);
+.hero-left h2{
+font-family:'Press Start 2P',cursive;
+font-size:50px;
+line-height:1.2;
+color:#00ff55;
 }
 
-.hero h2{
-    margin-top:20px;
-    color:#00ff55;
-}
-
-.hero p{
-    margin-top:15px;
-    font-size:20px;
-    line-height:1.7;
+.hero-left p{
+margin-top:20px;
+font-size:22px;
+line-height:1.6;
 }
 
 .btn{
-    display:inline-block;
-    background:#00ff55;
-    color:black;
-    padding:14px 24px;
-    margin:12px;
-    text-decoration:none;
-    border-radius:12px;
-    font-weight:bold;
-    font-size:18px;
-    box-shadow:0 0 12px #00ff55;
-    transition:.25s;
+display:inline-block;
+margin-top:25px;
+margin-right:12px;
+padding:15px 24px;
+border-radius:12px;
+text-decoration:none;
+font-weight:bold;
+background:#00ff55;
+color:black;
+border:none;
+cursor:pointer;
+transition:0.2s;
 }
 
 .btn:hover{
-    transform:translateY(-4px);
-    background:#7dff7d;
+transform:scale(1.05);
+}
+
+.insta{
+background:linear-gradient(45deg,#ff0077,#ff7a00);
+color:white;
+}
+
+.hero-right img{
+width:350px;
+border-radius:50%;
+box-shadow:0 0 40px #00ff55;
 }
 
 .section{
-    max-width:850px;
-    margin:30px auto;
-    background:rgba(20,20,20,.88);
-    padding:30px;
-    border-radius:18px;
-    box-shadow:0 0 18px rgba(0,255,85,.35);
+max-width:1200px;
+margin:auto;
+padding:40px 20px;
 }
 
 .section h2{
-    color:#00ff55;
-    margin-bottom:20px;
+text-align:center;
+font-family:'Press Start 2P',cursive;
+color:#00ff55;
+margin-bottom:30px;
 }
 
 .promise-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-    gap:18px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
 }
 
 .card{
-    background:#111;
-    padding:20px;
-    border-radius:12px;
-    border:2px solid #00ff55;
-    transition:.25s;
+background:rgba(0,0,0,.75);
+border:2px solid #00ff55;
+padding:20px;
+border-radius:18px;
+text-align:center;
 }
 
-.card:hover{
-    transform:scale(1.04);
-    box-shadow:0 0 15px #00ff55;
+.card h3{
+color:#00ff55;
+margin-bottom:12px;
 }
 
-.tnt-banner{
-    margin:30px auto;
-    background:#b30000;
-    padding:20px;
-    width:85%;
-    border-radius:15px;
-    font-family:'Press Start 2P',cursive;
-    font-size:16px;
-    animation:pulse 1.2s infinite;
+.vote-section{
+margin:50px auto;
+max-width:1100px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(0,0,0,.75);
+padding:30px;
+border-radius:20px;
+border:2px solid #00ff55;
+flex-wrap:wrap;
 }
 
-@keyframes pulse{
-    0%{transform:scale(1);}
-    50%{transform:scale(1.03);}
-    100%{transform:scale(1);}
+.vote-section img{
+width:160px;
 }
 
-.vote-box{
-    background:#111;
-    border:3px solid #00ff55;
-    width:260px;
-    margin:25px auto;
-    padding:20px;
-    border-radius:14px;
+.vote-text{
+text-align:center;
+flex:1;
+}
+
+.vote-text h2{
+font-family:'Press Start 2P',cursive;
+font-size:38px;
+color:#00ff55;
+}
+
+.vote-text p{
+font-size:22px;
+margin-top:18px;
 }
 
 .vote-number{
-    font-size:40px;
-    color:#00ff55;
-    font-family:'Press Start 2P',cursive;
-    margin-top:10px;
+font-size:50px;
+font-family:'Press Start 2P',cursive;
+color:#00ff55;
+margin-top:20px;
+transition: transform 0.2s ease;
 }
 
 footer{
-    background:#111;
-    padding:25px;
-    margin-top:40px;
-    border-top:3px solid #00ff55;
+margin-top:40px;
+background:#111;
+padding:30px;
+text-align:center;
+border-top:2px solid #00ff55;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-    <h1>💥 Creeper Janta Party 💥</h1>
-    <p>Vote for CJP 🟩</p>
+<header class="navbar">
+
+<div class="brand">
+<img src="logo.jpg">
+<h1>CREEPER JANTA PARTY</h1>
+</div>
+
+<nav>
+<a href="#">HOME</a>
+<a href="#">ABOUT</a>
+<a href="#">PROMISES</a>
+<a href="#">GALLERY</a>
+<a href="#">CONTACT</a>
+</nav>
+
 </header>
 
-<div class="hero">
+<section class="hero">
 
-    <img src="logo.jpg" class="logo" alt="CJP Logo">
+<div class="hero-left">
 
-    <h2>Official Creeper Janta Party Website</h2>
+<h2>CREEPER<br>JANTA PARTY</h2>
 
-    <p>
-        “Hum TNT se badlav layenge!<br>
-        Vote do Creeper Janta Party ko!”
-    </p>
+<p>
+Hum TNT se badlav layenge!<br>
+Vote do Creeper Janta Party ko!
+</p>
 
-    <a class="btn" href="#">🟩 JOIN CJP</a>
+<a class="btn" href="#">🟩 JOIN CJP</a>
 
-    <a class="btn"
-       href="https://www.instagram.com/creeper_janata_party?igsh=MXJkbm8zdTc3eG16MA=="
-       target="_blank">
-       📸 Follow Instagram
-    </a>
+<a class="btn insta"
+href="https://www.instagram.com/creeper_janata_party/"
+target="_blank">
+📸 FOLLOW ON INSTAGRAM
+</a>
 
 </div>
 
-<div class="tnt-banner">
-    🧨 TNT POWER ACTIVATED 🧨
+<div class="hero-right">
+<img src="logo.jpg">
 </div>
 
-<div class="section">
-    <h2>📢 Our Promises</h2>
+</section>
 
-    <div class="promise-grid">
-        <div class="card">🏠 Better Villages</div>
-        <div class="card">💣 TNT Development</div>
-        <div class="card">⛏ Minecraft Progress</div>
-        <div class="card">🔥 Boom With Power</div>
-    </div>
+<section class="section">
+
+<h2>OUR PROMISES</h2>
+
+<div class="promise-grid">
+
+<div class="card">
+<h3>🏠 Better Villages</h3>
+<p>Hum har gaon ko behtar banayenge.</p>
 </div>
 
-<div class="vote-box">
-    🗳 CJP Votes
-    <div class="vote-number">999+</div>
+<div class="card">
+<h3>💣 TNT Development</h3>
+<p>TNT se hoga vikas.</p>
 </div>
 
-<div class="section">
-    <h2>🟩 Vote For CJP</h2>
-
-    <p>
-        Strong creepers. Big dreams.<br>
-        Minecraft future starts here.
-    </p>
+<div class="card">
+<h3>⛏ Minecraft Progress</h3>
+<p>Har player secure future.</p>
 </div>
+
+<div class="card">
+<h3>🔥 Boom With Power</h3>
+<p>Dhamaka aur progress dono.</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="vote-section">
+
+<img src="logo.jpg">
+
+<div class="vote-text">
+
+<h2>VOTE FOR CJP</h2>
+
+<p>
+Strong creepers. Big dreams.<br>
+Minecraft future starts here.
+</p>
+
+<div class="vote-number" id="voteCount">00</div>
+
+<button class="btn" onclick="addVote()">
+🗳 Vote Now
+</button>
+
+</div>
+
+<img src="logo.jpg">
+
+</section>
 
 <footer>
-    Made by krish 🟩💥
+
+<h3>CREEPER JANTA PARTY</h3>
+
+<p>Official Party Website</p>
+
+<p>@creeper_janata_party</p>
+
+<p>© 2024 Creeper Janta Party</p>
+
+<p style="margin-top:10px; font-size:14px; opacity:0.8;">
+Created by Krish
+</p>
+
 </footer>
+
+<script>
+let votes = Number(localStorage.getItem("cjpVotes")) || 0;
+
+const el = document.getElementById("voteCount");
+
+function format(v){
+  return String(v % 100).padStart(2, "0");
+}
+
+function animateCount(start, end){
+  let current = start;
+  const step = Math.ceil((end - start) / 12);
+
+  const interval = setInterval(() => {
+    current += step;
+
+    if(current >= end){
+      current = end;
+      clearInterval(interval);
+    }
+
+    el.innerText = format(current);
+  }, 25);
+}
+
+el.innerText = format(votes);
+
+function addVote(){
+  const oldVotes = votes;
+  votes += 1;
+
+  animateCount(oldVotes, votes);
+
+  localStorage.setItem("cjpVotes", votes);
+}
+</script>
 
 </body>
 </html>
