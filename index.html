@@ -23,6 +23,7 @@ background-size:cover;
 background-position:center;
 color:white;
 overflow-x:hidden;
+transition:0.1s;
 }
 
 .navbar{
@@ -146,6 +147,7 @@ overflow:hidden;
 height:100%;
 background:#00ff55;
 width:70%;
+transition:0.3s;
 }
 
 .gta .fill{
@@ -192,7 +194,7 @@ border-top:2px solid #00ff55;
 🟩 JOIN CJP
 </a>
 
-<a class="btn insta" href="https://www.instagram.com/creeper_janata_party/" target="_blank">
+<a class="btn insta" href="https://www.instagram.com/creeper_janta_party/" target="_blank">
 📸 FOLLOW
 </a>
 
@@ -242,23 +244,72 @@ function format(v){
   return String(v % 100).padStart(2,"0");
 }
 
-function animate(start,end){
-  let cur=start;
-  let interval=setInterval(()=>{
-    cur++;
-    el.innerText=format(cur);
-    if(cur>=end) clearInterval(interval);
-  },30);
+el.innerText = format(votes);
+
+/* 🔊 SOUND FIXED */
+function playSound(){
+  const audio = new Audio("https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg");
+  audio.volume = 0.7;
+  audio.play().catch(()=>{});
 }
 
-el.innerText=format(votes);
+/* 🎆 CONFETTI FIXED */
+function confetti(){
+  for(let i=0;i<25;i++){
+    let c = document.createElement("div");
+    c.style.position="fixed";
+    c.style.left=Math.random()*100+"vw";
+    c.style.top="-20px";
+    c.style.width="8px";
+    c.style.height="8px";
+    c.style.background=["#00ff55","#ffffff","#ffcc00","#ff0077"][Math.floor(Math.random()*4)];
+    c.style.zIndex="9999";
+    document.body.appendChild(c);
+
+    let fall = setInterval(()=>{
+      c.style.top = (parseFloat(c.style.top)+4)+"px";
+      if(parseFloat(c.style.top)>window.innerHeight){
+        c.remove();
+        clearInterval(fall);
+      }
+    },20);
+  }
+}
+
+/* 📳 STRONG SHAKE */
+function shake(){
+  let i=0;
+  const interval=setInterval(()=>{
+    document.body.style.transform = `translate(${(i%2===0?8:-8)}px,0)`;
+    i++;
+    if(i>6){
+      clearInterval(interval);
+      document.body.style.transform="translate(0,0)";
+    }
+  },50);
+}
+
+/* 📈 ANIMATION */
+function animate(start,end){
+  let cur=start;
+  let i=setInterval(()=>{
+    cur++;
+    el.innerText=format(cur);
+    if(cur>=end) clearInterval(i);
+  },25);
+}
 
 function addVote(){
   let old=votes;
   votes++;
+
   localStorage.setItem("cjpVotes",votes);
 
   animate(old,votes);
+
+  playSound();
+  confetti();
+  shake();
 }
 </script>
 
