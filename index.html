@@ -331,7 +331,9 @@ Minecraft future starts here.
 <button class="btn" onclick="addVote()">
 🗳 Vote Now
 </button>
-
+<button class="btn" onclick="toggleMusic()" id="musicBtn">
+🎵 Music ON
+</button>
 </div>
 
 <img src="logo.jpg">
@@ -415,13 +417,13 @@ Close
 </button>
 
 </div>
-
 <script>
 let votes = Number(localStorage.getItem("cjpVotes")) || 0;
 
 const el = document.getElementById("voteCount");
 const sound = document.getElementById("creeperSound");
 const bg = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicBtn");
 
 function format(v){
   return String(v % 100).padStart(2, "0");
@@ -445,11 +447,24 @@ function animateCount(start, end){
 
 el.innerText = format(votes);
 
-function addVote(){
+window.addEventListener("load", () => {
+  bg.play().then(() => {
+    bg.muted = false;
+  }).catch(() => {});
+});
+
+function toggleMusic(){
 
   if(bg.paused){
     bg.play();
+    musicBtn.innerText = "🎵 Music ON";
+  } else {
+    bg.pause();
+    musicBtn.innerText = "🔇 Music OFF";
   }
+}
+
+function addVote(){
 
   sound.currentTime = 0;
   sound.play();
@@ -470,6 +485,7 @@ setTimeout(() => {
   document.getElementById("creeperPopup").style.display = "block";
 }, 4000);
 </script>
+
 
 </body>
 </html>
