@@ -5,57 +5,159 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Creeper Janta Party</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
 <style>
-body{
+*{
     margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
     font-family:Arial,sans-serif;
-    background:linear-gradient(180deg,#111,#1a1a1a);
+    background:
+        linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.75)),
+        url("https://wallpapercave.com/wp/wp11083872.jpg");
+    background-size:cover;
+    background-attachment:fixed;
     color:white;
     text-align:center;
 }
+
 header{
-    background:#1faa00;
-    padding:20px;
-    box-shadow:0 0 20px #00ff55;
+    background:linear-gradient(90deg,#0f8f00,#20c400,#0f8f00);
+    padding:25px;
+    box-shadow:0 0 30px #00ff55;
+    border-bottom:4px solid #00ff55;
 }
+
 h1{
-    margin:0;
-    font-size:2.5rem;
+    font-family:'Press Start 2P',cursive;
+    font-size:2rem;
+    text-shadow:0 0 12px #00ff55;
 }
+
+header p{
+    margin-top:12px;
+    font-size:18px;
+}
+
+.hero{
+    padding:40px 20px;
+}
+
 .logo{
     width:230px;
-    margin-top:25px;
     border-radius:18px;
-    box-shadow:0 0 20px #00ff55;
+    box-shadow:0 0 25px #00ff55;
+    transition:.3s;
 }
-.hero{
-    padding:30px;
+
+.logo:hover{
+    transform:scale(1.05);
 }
+
+.hero h2{
+    margin-top:20px;
+    color:#00ff55;
+}
+
+.hero p{
+    margin-top:15px;
+    font-size:20px;
+    line-height:1.7;
+}
+
 .btn{
     display:inline-block;
     background:#00ff55;
     color:black;
     padding:14px 24px;
-    margin:10px;
+    margin:12px;
     text-decoration:none;
-    border-radius:10px;
+    border-radius:12px;
     font-weight:bold;
     font-size:18px;
+    box-shadow:0 0 12px #00ff55;
+    transition:.25s;
 }
+
 .btn:hover{
+    transform:translateY(-4px);
     background:#7dff7d;
 }
+
 .section{
-    max-width:800px;
+    max-width:850px;
     margin:30px auto;
-    background:#222;
-    padding:20px;
-    border-radius:15px;
+    background:rgba(20,20,20,.88);
+    padding:30px;
+    border-radius:18px;
+    box-shadow:0 0 18px rgba(0,255,85,.35);
 }
-footer{
+
+.section h2{
+    color:#00ff55;
+    margin-bottom:20px;
+}
+
+.promise-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:18px;
+}
+
+.card{
     background:#111;
     padding:20px;
-    margin-top:30px;
+    border-radius:12px;
+    border:2px solid #00ff55;
+}
+
+.card:hover{
+    transform:scale(1.04);
+    box-shadow:0 0 15px #00ff55;
+}
+
+.tnt-banner{
+    margin:30px auto;
+    background:#b30000;
+    padding:20px;
+    width:85%;
+    border-radius:15px;
+    font-family:'Press Start 2P',cursive;
+    font-size:16px;
+    animation:pulse 1.2s infinite;
+}
+
+@keyframes pulse{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.03);}
+    100%{transform:scale(1);}
+}
+
+.vote-box{
+    background:#111;
+    border:3px solid #00ff55;
+    width:260px;
+    margin:25px auto;
+    padding:20px;
+    border-radius:14px;
+}
+
+.vote-number{
+    font-size:40px;
+    color:#00ff55;
+    font-family:'Press Start 2P',cursive;
+    margin-top:10px;
+}
+
+footer{
+    background:#111;
+    padding:25px;
+    margin-top:40px;
+    border-top:3px solid #00ff55;
 }
 </style>
 </head>
@@ -69,7 +171,7 @@ footer{
 
 <div class="hero">
 
-    <img src="logo.jpg" class="logo" alt="Creeper Janta Party Logo">
+    <img src="logo.jpg" class="logo" alt="CJP Logo">
 
     <h2>Official Creeper Janta Party Website</h2>
 
@@ -83,25 +185,47 @@ footer{
     <a class="btn"
        href="https://www.instagram.com/creeper_janata_party?igsh=MXJkbm8zdTc3eG16MA=="
        target="_blank">
-       📸 Follow on Instagram
+       📸 Follow Instagram
     </a>
 
 </div>
 
-<div class="section">
-    <h2>📢 Our Promises</h2>
-    <p>✔ Better villages</p>
-    <p>✔ TNT development</p>
-    <p>✔ Minecraft progress</p>
-    <p>✔ Boom with power</p>
+<div class="tnt-banner">
+    🧨 TNT POWER ACTIVATED 🧨
 </div>
 
 <div class="section">
-    <h2>🗳️ Vote For CJP</h2>
+
+    <h2>📢 Our Promises</h2>
+
+    <div class="promise-grid">
+
+        <div class="card">🏠 Better Villages</div>
+
+        <div class="card">💣 TNT Development</div>
+
+        <div class="card">⛏ Minecraft Progress</div>
+
+        <div class="card">🔥 Boom With Power</div>
+
+    </div>
+
+</div>
+
+<div class="vote-box">
+    🗳 CJP Votes
+    <div class="vote-number">999+</div>
+</div>
+
+<div class="section">
+
+    <h2>🟩 Vote For CJP</h2>
+
     <p>
-        Strong creepers. Big dreams.
+        Strong creepers. Big dreams.<br>
         Minecraft future starts here.
     </p>
+
 </div>
 
 <footer>
