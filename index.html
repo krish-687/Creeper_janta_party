@@ -1,3 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Creeper Janta Party</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:linear-gradient(180deg,#111,#1a1a1a);
+  color:white;
+  text-align:center;
+}
+
+header{
+  padding:40px 20px;
+}
+
+h1{
+  color:#00ff55;
+  font-size:38px;
+}
+
+.btn{
+  background:#00ff55;
+  color:black;
+  border:none;
+  padding:14px 28px;
+  font-size:18px;
+  border-radius:12px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.btn:hover{
+  transform:scale(1.05);
+}
+
+#voteCount{
+  font-size:42px;
+  margin:20px 0;
+  color:#00ff55;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>💥 Creeper Janta Party 💥</h1>
+  <p>Vote for TNT Vikas!</p>
+
+  <div id="voteCount">00</div>
+
+  <button onclick="addVote()" class="btn">
+    🗳 Vote Now
+  </button>
+</header>
+
+<audio id="creeperSound">
+  <source src="creeper.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Creeper Popup -->
+<div id="creeperPopup" style="
+display:none;
+position:fixed;
+bottom:25px;
+right:25px;
+background:rgba(0,0,0,.9);
+border:2px solid #00ff55;
+padding:20px;
+border-radius:18px;
+color:white;
+max-width:320px;
+z-index:9999;
+box-shadow:0 0 20px #00ff55;
+">
+
+<h3 style="
+font-size:14px;
+color:#00ff55;
+margin-bottom:12px;
+">
+⚡ CREEPER ALERT
+</h3>
+
+<p style="font-size:18px;">
+Creeper Janta Party needs your vote!
+🗳 Vote now and support TNT vikas!
+</p>
+
+<button onclick="closePopup()" class="btn">
+Close
+</button>
+
+</div>
+
 <script>
 let votes = Number(localStorage.getItem("cjpVotes")) || 0;
 
@@ -5,14 +105,14 @@ const el = document.getElementById("voteCount");
 const sound = document.getElementById("creeperSound");
 
 function format(v){
-  return String(v % 100).padStart(2, "0");
+  return String(v % 100).padStart(2,"0");
 }
 
-function animateCount(start, end){
+function animateCount(start,end){
   let current = start;
-  const step = Math.ceil((end - start) / 12);
+  const step = Math.ceil((end-start)/12);
 
-  const interval = setInterval(() => {
+  const interval = setInterval(()=>{
     current += step;
 
     if(current >= end){
@@ -21,32 +121,31 @@ function animateCount(start, end){
     }
 
     el.innerText = format(current);
-  }, 25);
+  },25);
 }
 
 el.innerText = format(votes);
 
 function addVote(){
-
   sound.currentTime = 0;
   sound.play();
 
   const oldVotes = votes;
   votes += 1;
 
-  animateCount(oldVotes, votes);
+  animateCount(oldVotes,votes);
 
-  localStorage.setItem("cjpVotes", votes);
+  localStorage.setItem("cjpVotes",votes);
 }
-
-/* 🔥 CREEPER POPUP ADDED */
 
 function closePopup(){
   document.getElementById("creeperPopup").style.display = "none";
 }
 
-setTimeout(() => {
+setTimeout(()=>{
   document.getElementById("creeperPopup").style.display = "block";
-}, 4000);
-
+},4000);
 </script>
+
+</body>
+</html>
