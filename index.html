@@ -379,10 +379,9 @@ Created by Krish
 </audio>
 
 
-<audio id="bgMusic" autoplay loop muted>
+<audio id="bgMusic" loop>
   <source src="bgmusic.mp3" type="audio/mpeg">
 </audio>
-
 
 <div id="creeperPopup" style="
 display:none;
@@ -449,19 +448,22 @@ function animateCount(start,end){
 el.innerText = format(votes);
 
 /* MUSIC BUTTON FIX */
+
 function toggleMusic(){
 
   if(bg.paused){
 
-    bg.muted = false;
-    bg.play();
-
-    musicBtn.innerText = "🔇 Music OFF";
+    bg.play()
+    .then(() => {
+      musicBtn.innerText = "🔇 Music OFF";
+    })
+    .catch(err => {
+      console.log(err);
+    });
 
   } else {
 
     bg.pause();
-
     musicBtn.innerText = "🎵 Music ON";
   }
 }
