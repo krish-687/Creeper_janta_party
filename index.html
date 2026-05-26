@@ -530,7 +530,44 @@ setTimeout(() => {
   document.getElementById("creeperPopup").style.display="block";
 },4000);
 </script>
+<script>
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbzXRY3UbqQSJAX1Ddop4uCwWF_uEtamhp8j3UWaVU9JaX2Upjeq4dVY10dsPfcomIPV/exec";
 
+let voted = localStorage.getItem("cjpVoted") || "false";
+const el = document.getElementById("voteCount");
+
+async function getVotes(){
+  const res = await fetch(SHEET_URL);
+  const data = await res.json();
+
+  el.innerText = String(data.votes).padStart(2,"0");
+}
+
+async function addVote(){
+
+  if(voted === "true"){
+    alert("⚠️ Aap already vote kar chuke ho!");
+    return;
+  }
+
+  const res = await fetch(SHEET_URL,{
+    method:"POST"
+  });
+
+  const data = await res.json();
+
+  el.innerText = String(data.votes).padStart(2,"0");
+
+  localStorage.setItem("cjpVoted","true");
+  voted = "true";
+
+  alert("✅ Vote successful!");
+}
+
+getVotes();
+
+setInterval(getVotes,3000);
+</script>
 
 </body>
 </html>
