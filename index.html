@@ -330,9 +330,20 @@ Minecraft future starts here.
 </p>
 
 <div class="vote-number" id="voteCount">00</div>
-
-<button class="btn" onclick="addVote()">
-🗳 Vote Now
+<button
+onclick="addVote()"
+style="
+margin-top:20px;
+padding:15px 24px;
+border:none;
+border-radius:12px;
+background:gold;
+color:black;
+font-weight:bold;
+cursor:pointer;
+font-size:18px;
+">
+Vote Now
 </button>
 
 </div>
@@ -459,22 +470,31 @@ Close
 
 </div>
 <script>
-let votes = Number(localStorage.getItem("cjpVotes")) || 0;
-
 const el = document.getElementById("voteCount");
 const sound = document.getElementById("creeperSound");
 const bg = document.getElementById("bgMusic");
 const musicBtn = document.getElementById("musicBtn");
 
+const SHEET_URL =
+"https://script.google.com/macros/s/AKfycbzXRY3UbqQSJAX1Ddop4uCwWF_uEtamhp8j3UWaVU9JaX2Upjeq4dVY10dsPfcomIPV/exec";
+
+let voted =
+localStorage.getItem("bcsVoted") || "false";
+
 function format(v){
-  return String(v % 100).padStart(2,"0");
+  return String(v).padStart(2,"0");
 }
 
 function animateCount(start,end){
-  let current = start;
-  const step = Math.ceil((end-start)/12);
 
-  const interval = setInterval(() => {
+  let current = start;
+
+  const step =
+  Math.ceil((end-start)/12);
+
+  const interval =
+  setInterval(() => {
+
     current += step;
 
     if(current >= end){
@@ -482,13 +502,13 @@ function animateCount(start,end){
       clearInterval(interval);
     }
 
-    el.innerText = format(current);
+    el.innerText =
+    format(current);
+
   },25);
 }
 
-el.innerText = format(votes);
-
-/* MUSIC BUTTON FIX */
+/* MUSIC */
 
 function toggleMusic(){
 
@@ -496,77 +516,93 @@ function toggleMusic(){
 
     bg.play()
     .then(() => {
-      musicBtn.innerText = "🔇 Music OFF";
-    })
-    .catch(err => {
-      console.log(err);
+      musicBtn.innerText =
+      "🔇 Music OFF";
     });
 
   } else {
 
     bg.pause();
-    musicBtn.innerText = "🎵 Music ON";
+
+    musicBtn.innerText =
+    "🎵 Music ON";
   }
 }
 
-function addVote(){
-
-  sound.currentTime = 0;
-  sound.play();
-
-  const oldVotes = votes;
-  votes += 1;
-
-  animateCount(oldVotes,votes);
-
-  localStorage.setItem("cjpVotes",votes);
-}
-
-function closePopup(){
-  document.getElementById("creeperPopup").style.display="none";
-}
-
-setTimeout(() => {
-  document.getElementById("creeperPopup").style.display="block";
-},4000);
-</script>
-<script>
-const SHEET_URL = "https://script.google.com/macros/s/AKfycbzXRY3UbqQSJAX1Ddop4uCwWF_uEtamhp8j3UWaVU9JaX2Upjeq4dVY10dsPfcomIPV/exec";
-
-let voted = localStorage.getItem("cjpVoted") || "false";
-const el = document.getElementById("voteCount");
+/* LIVE COUNT */
 
 async function getVotes(){
-  const res = await fetch(SHEET_URL);
-  const data = await res.json();
 
-  el.innerText = String(data.votes).padStart(2,"0");
+  const res =
+  await fetch(SHEET_URL);
+
+  const data =
+  await res.json();
+
+  el.innerText =
+  format(data.votes);
 }
+
+/* VOTE */
 
 async function addVote(){
 
   if(voted === "true"){
-    alert("⚠️ Aap already vote kar chuke ho!");
+    alert("Aap already vote kar chuke ho!");
     return;
   }
 
-  const res = await fetch(SHEET_URL,{
+  sound.currentTime = 0;
+  sound.play();
+
+  const oldVotes =
+  Number(el.innerText) || 0;
+
+  const res =
+  await fetch(SHEET_URL,{
     method:"POST"
   });
 
-  const data = await res.json();
+  const data =
+  await res.json();
 
-  el.innerText = String(data.votes).padStart(2,"0");
+  animateCount(
+    oldVotes,
+    data.votes
+  );
 
-  localStorage.setItem("cjpVoted","true");
+  localStorage.setItem(
+    "bcsVoted",
+    "true"
+  );
+
   voted = "true";
 
-  alert("✅ Vote successful!");
+  alert("Vote successful!");
 }
+
+/* POPUP */
+
+function closePopup(){
+  document.getElementById(
+    "creeperPopup"
+  ).style.display="none";
+}
+
+setTimeout(() => {
+  document.getElementById(
+    "creeperPopup"
+  ).style.display="block";
+},4000);
+
+/* START */
 
 getVotes();
 
-setInterval(getVotes,3000);
+setInterval(
+  getVotes,
+  3000
+);
 </script>
 
 </body>
